@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asteróides Próximos</title>
+</head>
+<body>
+    <h1>Procurar Asteroides Próximos à Terra</h1>
+    
+    <form id="asteroid-form">
+        <label for="min_diameter">Diâmetro Mínimo (km):</label>
+        <input type="number" step="any" id="min_diameter" name="min_diameter" required>
+        
+        <label for="max_diameter">Diâmetro Máximo (km):</label>
+        <input type="number" step="any" id="max_diameter" name="max_diameter" required>
+
+        <label for="relative_velocity">Velocidade Relativa (km/s):</label>
+        <input type="number" step="any" id="relative_velocity" name="relative_velocity" required>
+
+        <label for="miss_distance">Distância até a Terra (km):</label>
+        <input type="number" step="any" id="miss_distance" name="miss_distance" required>
+
+        <label for="absolute_magnitude">Magnitude Absoluta:</label>
+        <input type="number" step="any" id="absolute_magnitude" name="absolute_magnitude" required>
+
+        <button type="submit">Buscar Asteroides</button>
+    </form>
+
+    <div id="asteroid-results"></div>
+
+    <script>
+        document.getElementById('asteroid-form').addEventListener('submit', function(e) {
+            e.preventDefault();  
+
+            const min_diameter = document.getElementById('min_diameter').value;
+            const max_diameter = document.getElementById('max_diameter').value;
+            const relative_velocity = document.getElementById('relative_velocity').value;
+            const miss_distance = document.getElementById('miss_distance').value;
+            const absolute_magnitude = document.getElementById('absolute_magnitude').value;
+
+            document.getElementById('asteroid-results').innerHTML = 'Carregando resultados...';
+
+            fetch(`/asteroids/get_asteroids/?min_diameter=${min_diameter}&max_diameter=${max_diameter}&relative_velocity=${relative_velocity}&miss_distance=${miss_distance}&absolute_magnitude=${absolute_magnitude}`)
+                .then(response => response.json())  
+                .then(data => {
+                    if (data.asteroids && data.asteroids.length > 0) {
+                        let resultHTML = '<ul>';
+                        data.asteroids.forEach(asteroid => {
+                            resultHTML += `
+                                <li>
+                                    <strong>Nome:</strong> ${asteroid.name} <br>
+                                    <strong>Diâmetro:</strong> ${asteroid.min_diameter} km (mín) a ${asteroid.max_diameter} km (máx) <br>
+                                    <strong>Velocidade Relativa:</strong> ${asteroid.relative_velocity} km/s <br>
+                                    <strong>Distância à Terra:</strong> ${asteroid.miss_distance} km <br>
+                                    <strong>Magnitude Absoluta:</strong> ${asteroid.absolute_magnitude}
+                                </li>
+                            `;
+                        });
+                        resultHTML += '</ul>';
+                        document.getElementById('asteroid-results').innerHTML = resultHTML;
+                    } else {
+                        document.getElementById('asteroid-results').innerHTML = 'Nenhum asteroide encontrado com os parâmetros fornecidos.';
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('asteroid-results').innerHTML = 'Ocorreu um erro ao buscar os asteroides. Tente novamente.';
+                });
+        });
+    </script>
+</body>
+</html>
