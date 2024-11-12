@@ -1,62 +1,100 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Asteróides Próximos</title>
+    <title>Procurar Asteroides Próximos à Terra</title>
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <h1>Procurar Asteroides Próximos à Terra</h1>
     
+    <!-- Formulário para Busca de Asteroides -->
     <form id="asteroid-form">
+        <h3>Busca de Asteroides</h3>
+        
         <label for="min_diameter">Diâmetro Mínimo (km):</label>
-        <input type="number" step="any" id="min_diameter" name="min_diameter" required>
+        <input type="number" step="any" id="min_diameter" name="min_diameter">
         
         <label for="max_diameter">Diâmetro Máximo (km):</label>
-        <input type="number" step="any" id="max_diameter" name="max_diameter" required>
-
+        <input type="number" step="any" id="max_diameter" name="max_diameter">
+        
         <label for="relative_velocity">Velocidade Relativa (km/s):</label>
-        <input type="number" step="any" id="relative_velocity" name="relative_velocity" required>
-
+        <input type="number" step="any" id="relative_velocity" name="relative_velocity">
+        
         <label for="miss_distance">Distância até a Terra (km):</label>
-        <input type="number" step="any" id="miss_distance" name="miss_distance" required>
-
+        <input type="number" step="any" id="miss_distance" name="miss_distance">
+        
         <label for="absolute_magnitude">Magnitude Absoluta:</label>
-        <input type="number" step="any" id="absolute_magnitude" name="absolute_magnitude" required>
-
+        <input type="number" step="any" id="absolute_magnitude" name="absolute_magnitude">
+        
         <button type="submit">Buscar Asteroides</button>
     </form>
 
     <div id="asteroid-results"></div>
 
     <script>
+        // Quando o formulário for enviado
         document.getElementById('asteroid-form').addEventListener('submit', function(e) {
-            e.preventDefault();  
+            e.preventDefault();
 
-            const min_diameter = document.getElementById('min_diameter').value;
-            const max_diameter = document.getElementById('max_diameter').value;
-            const relative_velocity = document.getElementById('relative_velocity').value;
-            const miss_distance = document.getElementById('miss_distance').value;
-            const absolute_magnitude = document.getElementById('absolute_magnitude').value;
+            // Pega os valores dos campos do formulário
+            const min_diameter = parseFloat(document.getElementById('min_diameter').value);
+            const max_diameter = parseFloat(document.getElementById('max_diameter').value);
+            const relative_velocity = parseFloat(document.getElementById('relative_velocity').value);
+            const miss_distance = parseFloat(document.getElementById('miss_distance').value);
+            const absolute_magnitude = parseFloat(document.getElementById('absolute_magnitude').value);
 
+            // Exibe "Carregando..." enquanto busca os dados
             document.getElementById('asteroid-results').innerHTML = 'Carregando resultados...';
 
-            fetch(`/asteroids/get_asteroids/?min_diameter=${min_diameter}&max_diameter=${max_diameter}&relative_velocity=${relative_velocity}&miss_distance=${miss_distance}&absolute_magnitude=${absolute_magnitude}`)
-                .then(response => response.json())  
+            // Monta os parâmetros da query string (ignora parâmetros vazios)
+            const queryParams = new URLSearchParams();
+
+            if (!isNaN(min_diameter)) queryParams.append('min_diameter', min_diameter);
+            if (!isNaN(max_diameter)) queryParams.append('max_diameter', max_diameter);
+            if (!isNaN(relative_velocity)) queryParams.append('relative_velocity', relative_velocity);
+            if (!isNaN(miss_distance)) queryParams.append('miss_distance', miss_distance);
+            if (!isNaN(absolute_magnitude)) queryParams.append('absolute_magnitude', absolute_magnitude);
+
+            // Faz a requisição para a API do Django
+            fetch(`/api/get_asteroids/?${queryParams.toString()}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Falha na requisição para a API. Status: ' + response.status);
+                    }
+                    return response.json();
+                })
                 .then(data => {
+                    // Verifica se a resposta contém asteroides
                     if (data.asteroids && data.asteroids.length > 0) {
                         let resultHTML = '<ul>';
                         data.asteroids.forEach(asteroid => {
-                            resultHTML += `
-                                <li>
-                                    <strong>Nome:</strong> ${asteroid.name} <br>
-                                    <strong>Diâmetro:</strong> ${asteroid.min_diameter} km (mín) a ${asteroid.max_diameter} km (máx) <br>
-                                    <strong>Velocidade Relativa:</strong> ${asteroid.relative_velocity} km/s <br>
-                                    <strong>Distância à Terra:</strong> ${asteroid.miss_distance} km <br>
-                                    <strong>Magnitude Absoluta:</strong> ${asteroid.absolute_magnitude}
-                                </li>
-                            `;
+                            // Compara os dados dos asteroides com os filtros
+                            let showAsteroid = true;
+
+                            if (!isNaN(min_diameter) && asteroid.min_diameter < min_diameter) showAsteroid = false;
+                            if (!isNaN(max_diameter) && asteroid.max_diameter > max_diameter) showAsteroid = false;
+                            if (!isNaN(relative_velocity) && asteroid.relative_velocity < relative_velocity) showAsteroid = false;
+                            if (!isNaN(miss_distance) && asteroid.miss_distance > miss_distance) showAsteroid = false;
+                            if (!isNaN(absolute_magnitude) && asteroid.absolute_magnitude > absolute_magnitude) showAsteroid = false;
+
+                            // Só exibe asteroides que atendem aos critérios
+                            if (showAsteroid) {
+                                resultHTML += `
+                                    <li>
+                                        <strong>Nome:</strong> ${asteroid.name} <br>
+                                        <strong>Diâmetro:</strong> ${asteroid.min_diameter} km (mín) a ${asteroid.max_diameter} km (máx) <br>
+                                        <strong>Velocidade Relativa:</strong> ${asteroid.relative_velocity} km/s <br>
+                                        <strong>Distância à Terra:</strong> ${asteroid.miss_distance} km <br>
+                                        <strong>Magnitude Absoluta:</strong> ${asteroid.absolute_magnitude} <br>
+                                    </li>
+                                `;
+                            }
                         });
                         resultHTML += '</ul>';
                         document.getElementById('asteroid-results').innerHTML = resultHTML;
@@ -65,7 +103,8 @@
                     }
                 })
                 .catch(error => {
-                    document.getElementById('asteroid-results').innerHTML = 'Ocorreu um erro ao buscar os asteroides. Tente novamente.';
+                    console.error(error); // Log o erro no console para depuração
+                    document.getElementById('asteroid-results').innerHTML = 'Ocorreu um erro ao buscar os asteroides. Tente novamente. Detalhes do erro: ' + error.message;
                 });
         });
     </script>
