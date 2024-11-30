@@ -635,11 +635,11 @@ form button:hover {
 }
 
 .footer {
-    background-color: #0d0d0d; /* Cor de fundo preta */
-    color: #ddd; /* Texto claro */
+    background-color: #0d0d0d; 
+    color: #ddd; 
     padding: 30px 20px;
     text-align: center;
-    border-top: 2px solid #ff4500; /* Linha laranja em cima */
+    border-top: 2px solid #ff4500; 
 }
 
 .footer-content p {
