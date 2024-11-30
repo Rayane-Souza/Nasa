@@ -1,0 +1,726 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    color: white;
+    background-color: #0d0d0d;
+    line-height: 1.6;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #101010;
+}
+
+.navbar .logo {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.navbar ul {
+    display: flex;
+    list-style: none;
+}
+
+.navbar ul li {
+    margin: 0 15px;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+.navbar ul li a:hover {
+    color: #ff4500;
+}
+
+
+.hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 500px 10% 50px;  
+    position: relative;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+
+.hero .planet-video {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.hero .content {
+    position: absolute;
+    top: 50%; 
+    left: 5%;  
+    transform: translateY(-50%);  
+    text-align: left;  
+    color: white;
+    z-index: 1;
+}
+
+.hero h1 {
+    font-size: 30px;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.hero h2 {
+    font-size: 60px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.hero .buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.hero .btn {
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    background-color: #ff4500;
+    color: white;
+}
+
+.hero .btn:hover {
+    background-color: #ff5722;
+}
+
+.hero .btn.secondary {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+}
+
+.hero .btn.secondary:hover {
+    background-color: white;
+    color: #0b0b0b;
+}
+
+.logo img {
+    width: 150px; 
+    height: auto;
+}
+
+.about-section {
+    display: flex;
+    align-items: center;
+    padding: 50px 10%;
+    background-color: white;
+    color: black;
+    gap: 20px;
+}
+
+.about-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 30px;
+}
+
+.about-text {
+    flex: 1;
+    text-align: left;
+}
+
+.about-text h3 {
+    font-size: 14px;
+    color: #e63946;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+}
+
+.about-text h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #1d3557;
+}
+
+.about-text p {
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.learn-more {
+    font-size: 14px;
+    color: #e63946;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 10px;
+    position: relative;
+}
+
+.learn-more::after {
+    content: "→";
+    margin-left: 5px;
+}
+
+.about-image {
+    flex: 1;
+    text-align: center;
+}
+
+.about-image img {
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+.newsletter-banner {
+    position: relative;
+    background-image: url("../IMG/imgnasa.png");
+    background-size: cover;
+    background-position: center;
+    height: 300px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    background-repeat: no-repeat;
+}
+
+
+.newsletter-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); 
+    z-index: 1;
+}
+
+.banner-content {
+    position: relative;
+    z-index: 2;
+}
+
+.banner-content h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.banner-content p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.btn-signup {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ff9000; 
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.btn-signup:hover {
+    background-color: #ff7000;
+}
+
+.tabs-container {
+background-color: white; 
+color: #333; 
+padding: 50px 20px; 
+}
+
+.tabs {
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+    border-bottom: 2px solid #1d3557;
+}
+
+.tab-link {
+    background: none;
+    border: none;
+    color: #1d3557;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 5px 5px 0 0;
+}
+
+.tab-link.active {
+    background-color: #f4b400; 
+    color: #1d3557;
+    font-weight: bold;
+}
+
+.tab-link:hover {
+    background-color: #f4b400;
+    transition: background-color 0.3s ease;
+}
+
+.tab-content {
+    margin-top: 20px;
+}
+.about-section {
+    background-color: white;
+    color: #1d3557; 
+    padding: 50px 20px; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+}
+
+.about-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px; 
+}
+
+.about-text {
+    flex: 1;
+    max-width: 50%;
+}
+
+.about-text h3 {
+    font-size: 1.5rem;
+    color: #e63946; 
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.about-text h2 {
+    font-size: 2.5rem;
+    color: #1d3557; 
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.about-text p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #333; 
+    margin-bottom: 15px;
+}
+
+.about-text .learn-more {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #f4b400; 
+    color: #1d3557; 
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.about-text .learn-more:hover {
+    background-color: #e63946; 
+    color: white; 
+}
+
+.about-image {
+    flex: 1;
+    max-width: 50%;
+    text-align: center;
+}
+
+.about-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+}
+
+.section {
+    display: none;
+    padding: 40px;
+    /* background: #1a1a1a; 
+    border-radius: 10px; */
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); */
+}
+
+.section.active {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+
+.nasa-text {
+    flex: 1;
+    max-width: 60%;
+    color: #333;
+}
+
+.nasa-text h2 {
+    font-size: 2rem;
+    color: #1d3557;
+    margin-bottom: 20px;
+}
+
+.nasa-text p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.nasa-image {
+    flex: 1;
+    max-width: 40%;
+    text-align: center;
+}
+
+.nasa-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.nasa-image .caption {
+    font-size: 0.9rem;
+    margin-top: 10px;
+    color: #aaa;
+    line-height: 1.4;
+}
+
+.asteroid-section {
+    background-color: #0d0d0d;
+    padding: 60px 20px;
+    color: #fff;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.title {
+    font-size: 3.5rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: #f0e68c; 
+    margin-bottom: 15px;
+}
+
+.description {
+    font-size: 1.2rem;
+    max-width: 900px;
+    margin: 0 auto;
+    line-height: 1.6;
+    opacity: 0.85;
+}
+
+.asteroid-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+    padding: 0 20px;
+     margin-left: 150px; 
+}
+
+.asteroid-card {
+    background-color: #2f2f2f;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.asteroid-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
+}
+
+.asteroid-name {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: #ff4500; 
+}
+
+.asteroid-details p {
+    font-size: 1rem;
+    margin: 8px 0;
+    color: #ddd;
+    opacity: 0.9;
+}
+
+.asteroid-details strong {
+    color: #ffdd57; 
+}
+.titlee {
+    font-size: 3rem;
+    color: #f0e68c;
+    margin-bottom: 20px;
+}
+
+.descriptionn {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    opacity: 0.85;
+}
+
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+form input {
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: none;
+}
+
+form button {
+    background-color: #ff4500;
+    color: #fff;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+form button:hover {
+    background-color: #e63946;
+}
+
+.result {
+    margin-top: 30px;
+    font-size: 1.5rem;
+    color: #ffdd57;
+}
+
+.apophis-section {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #f7f8f9 0%, #c7d7e3 100%);  
+    position: relative;
+    text-align: left;  
+    overflow: hidden;
+}
+
+.apophis-section .text {
+    width: 50%;
+    padding-right: 30px;
+}
+
+.apophis-section h2 {
+    font-size: 2.5rem;
+    color: #1d3557;
+    font-weight: bold;
+    margin-bottom: 20px; 
+    border-bottom: 2px solid #f4a261; 
+    padding-bottom: 10px;
+}
+
+.apophis-section p {
+    font-size: 1rem;
+    color: #333;
+    line-height: 1.8;
+    margin-bottom: 15px;
+    background-color: #fff; 
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+}
+.apophis-section .asteroid-image {
+    width: 35%;
+    position: relative;
+    animation: rotate 10s infinite linear;
+    border-radius: 15px;
+    overflow: hidden; 
+}
+
+.apophis-section .asteroid-image img {
+    width: 100%;
+}
+.mission-section {
+    background-color: #0d0d0d; 
+    color: #fff; 
+    padding: 60px 20px;
+    text-align: center; 
+    /* border-radius: 10px; */
+    /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4); */
+    margin-left: 190px;
+}
+
+.mission-section h2 {
+    font-size: 3rem;
+    color: #ff4500; 
+    margin-bottom: 30px;
+}
+
+.mission-section p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+    color: #ddd;
+}
+
+.mission-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+    gap: 30px;
+    justify-content: center; 
+    align-items: center; 
+    margin-top: 40px;
+}
+
+
+.mission-card {
+    background-color: #333;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.mission-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
+}
+
+.mission-card h3 {
+    font-size: 1.8rem;
+    color: #ff4500; 
+    margin-bottom: 15px;
+}
+
+.mission-card p {
+    font-size: 1rem;
+    color: #ddd;
+}
+
+.footer {
+    background-color: #0d0d0d; /* Cor de fundo preta */
+    color: #ddd; /* Texto claro */
+    padding: 30px 20px;
+    text-align: center;
+    border-top: 2px solid #ff4500; /* Linha laranja em cima */
+}
+
+.footer-content p {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.footer-links {
+    margin: 20px 0;
+}
+
+.footer-links a {
+    color: #ff4500;
+    margin: 0 15px;
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+.social-links a {
+    margin: 0 10px;
+}
+
+.social-links img {
+    width: 24px;
+    height: 24px;
+}
+
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@media (max-width: 768px) {
+    .apophis-section {
+        flex-direction: column;
+        text-align: center;
+        padding: 40px 20px;
+    }
+
+    .apophis-section .text {
+        width: 100%;
+        padding-right: 0;
+    }
+
+    .apophis-section .asteroid-image {
+        width: 80%;
+        margin-top: 20px;
+    }
+
+    .apophis-section h2 {
+        font-size: 2rem;
+    }
+
+    .apophis-section p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .title {
+        font-size: 2.5rem;
+    }
+
+    .description {
+        font-size: 1rem;
+        margin-top: 20px;
+    }
+
+    .asteroid-cards {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+
+    .asteroid-card {
+        padding: 15px;
+    }
+}
