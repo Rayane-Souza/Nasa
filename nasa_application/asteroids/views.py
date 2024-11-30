@@ -113,35 +113,11 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-import requests
-import joblib  
-import os
-import numpy as np
+import requests  
 from datetime import datetime, timedelta
 from .models import Asteroide
 
 NASA_API_KEY = 'na8I8Z0xq2MlYS6y1XPq88kPtsxhixCLnnzU7Wci'
-
-def carregar_modelo():
-    try:
-        modelo_path = os.path.join(os.path.dirname(__file__), 'modelo_rede_neural.pkl')
-        modelo = joblib.load(modelo_path)
-        return modelo
-    except FileNotFoundError:
-        print("Erro: O arquivo modelo_rede_neural.pkl não foi encontrado.")
-        return None
-
-modelo = carregar_modelo()
-
-def predizer_perigo(diametro_min, diametro_max, velocidade_relativa, magnitude_absoluta, miss_distance):
-    if modelo is None:
-        return "Erro no modelo"
-
-    dados_entrada = np.array([[diametro_min, diametro_max, velocidade_relativa, magnitude_absoluta, miss_distance]])
-    
-    previsao = modelo.predict(dados_entrada)
-    
-    return "Perigoso" if previsao[0] == 1 else "Não perigoso"
 
 class AsteroideSearchView(APIView):
     def get(self, request, *args, **kwargs):
@@ -219,21 +195,8 @@ def index(request):
     if absolute_magnitude:
         asteroids = asteroids.filter(magnitude__lte=absolute_magnitude)
 
-   
-    if request.method == 'POST':
-      
-        diametro_min = float(request.POST.get('diametro_min', 0))
-        diametro_max = float(request.POST.get('diametro_max', 0))
-        velocidade_relativa = float(request.POST.get('velocidade_relativa', 0))
-        magnitude_absoluta = float(request.POST.get('magnitude_absoluta', 0))
-        miss_distance = float(request.POST.get('miss_distance', 0)) 
-        
-        
-        resultado = predizer_perigo(diametro_min, diametro_max, velocidade_relativa, magnitude_absoluta, miss_distance)
-        
-       
-        return render(request, 'asteroids/index.html', {'resultado': resultado, 'asteroids': asteroids})
-
-   
     return render(request, 'asteroids/index.html', {'asteroids': asteroids})
+
+
+
 
