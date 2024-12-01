@@ -82,6 +82,13 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'nasa_application.wsgi.application'
 
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Asteroides API',
+    'DESCRIPTION': 'API para gerenciamento de asteroides',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,  # Impede a exposição do endpoint /api/schema/
+}
+
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
