@@ -6,6 +6,8 @@
     <title>Asteroids: A Threat or a Wonder</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'CSS/style.css' %}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
 </head>
 <body>
     <header class="navbar">
@@ -215,22 +217,23 @@
     
         <form id="asteroid-form">
             <label for="diametro_min">Diâmetro Mínimo (em metros): </label>
-            <input type="number" id="diametro_min" required><br>
-    
+            <input type="number" name="diametro_min" id="diametro_min" step="0.000001" required><br>
+        
             <label for="diametro_max">Diâmetro Máximo (em metros): </label>
-            <input type="number" id="diametro_max" required><br>
-    
+            <input type="number" name="diametro_max" id="diametro_max" step="0.000001" required><br>
+        
             <label for="velocidade_relativa">Velocidade Relativa (em km/h): </label>
-            <input type="number" id="velocidade_relativa" required><br>
-    
+            <input type="number" name="velocidade_relativa" id="velocidade_relativa" step="0.000001" required><br>
+        
             <label for="miss_distance">Distância de Aproximação (em km): </label>
-            <input type="number" id="miss_distance" required><br>
-    
+            <input type="number" name="miss_distance" id="miss_distance" step="0.000001" required><br>
+        
             <label for="magnitude_absoluta">Magnitude Absoluta: </label>
-            <input type="number" id="magnitude_absoluta" required><br>
-    
-            <button type="submit">Verificar</button>
+            <input type="number" name="magnitude_absoluta" id="magnitude_absoluta" step="0.000001" required><br>
+        
+            <button type="submit">Enviar</button>
         </form>
+        
     
         <h3 id="resultado"></h3>
         <p id="probabilidade"></p>
@@ -284,10 +287,11 @@
                 <a href="#">Contato</a>
             </div>
             <div class="social-links">
-                <a href="https://facebook.com" target="_blank" title="Facebook"><img src="facebook-icon.png" alt="Facebook"></a>
-                <a href="https://twitter.com" target="_blank" title="Twitter"><img src="twitter-icon.png" alt="Twitter"></a>
-                <a href="https://instagram.com" target="_blank" title="Instagram"><img src="instagram-icon.png" alt="Instagram"></a>
+                <a href="https://facebook.com" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="https://twitter.com" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="https://instagram.com" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
             </div>
+            
         </div>
     </footer>
     
