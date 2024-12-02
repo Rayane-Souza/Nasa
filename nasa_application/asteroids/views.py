@@ -332,3 +332,60 @@ class AsteroideDetailView(APIView):
             return Response({'error': 'Asteroide não encontrado'}, status=status.HTTP_404_NOT_FOUND)
         asteroid.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+import numpy as np
+import joblib
+import pandas as pd
+import json
+from django.shortcuts import render
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+
+modelo = joblib.load('./asteroids/mlp.pkl')  
+scaler = joblib.load('./asteroids/dadosescalonados.pkl')  
+
+def index(request):
+    return render(request, 'asteroids/index.html')
+
+@csrf_exempt
+def verificar_asteroide(request):
+    if request.method == 'POST':
+        try:
+           
+            dados = json.loads(request.body)
+            print("Dados recebidos no backend:", dados) 
+
+            diametro_min = float(dados['diametro_min'])
+            diametro_max = float(dados['diametro_max'])
+            velocidade_relativa = float(dados['velocidade_relativa'])
+            miss_distance = float(dados['miss_distance'])
+            magnitude_absoluta = float(dados['magnitude_absoluta'])
+
+            dados_entrada = pd.DataFrame([[diametro_min, diametro_max, velocidade_relativa, miss_distance, magnitude_absoluta]],
+                                         columns=['est_diameter_min', 'est_diameter_max', 'relative_velocity', 'miss_distance', 'absolute_magnitude'])
+
+            dados_entrada_scaled = scaler.transform(dados_entrada)
+
+            predicao = modelo.predict(dados_entrada_scaled)
+            print("Predição:", predicao)  
+
+            probabilidade_array = modelo.predict_proba(dados_entrada_scaled)[0]
+            probabilidade = probabilidade_array[1 if predicao[0] else 0] * 100
+            print("Probabilidade de risco:", probabilidade) 
+
+            predicao_str = 'Perigoso' if predicao[0] == 1 else 'Não Perigoso'
+
+            return JsonResponse({'resultado': predicao_str, 'probabilidade': round(float(probabilidade), 2)})
+
+        except Exception as e:
+          
+            print("Erro no backend:", str(e))  
+            return JsonResponse({'error': str(e)})
+
+    return JsonResponse({'error': 'Método não permitido. Use POST.'})
+
+
+
+
+

@@ -213,32 +213,67 @@
             <p class="descriptionn">Insira as informações do asteroide para saber se ele representa um risco para a Terra.</p>
         </div>
     
-        <form method="POST">
-            {% csrf_token %}
-            <label for="diametro_min">Diâmetro Mínimo (km):</label>
-            <input type="number" id="diametro_min" name="diametro_min" required>
-            
-            <label for="diametro_max">Diâmetro Máximo (km):</label>
-            <input type="number" id="diametro_max" name="diametro_max" required>
-            
-            <label for="velocidade_relativa">Velocidade Relativa (km/s):</label>
-            <input type="number" id="velocidade_relativa" name="velocidade_relativa" required>
-            
-            <label for="magnitude_absoluta">Magnitude Absoluta:</label>
-            <input type="number" id="magnitude_absoluta" name="magnitude_absoluta" required>
-            
-            <label for="miss_distance">Distância de Aproximação (AU):</label>
-            <input type="number" id="miss_distance" name="miss_distance" required>
+        <form id="asteroid-form">
+            <label for="diametro_min">Diâmetro Mínimo (em metros): </label>
+            <input type="number" id="diametro_min" required><br>
     
-            <button type="submit">Verificar Perigo</button>
+            <label for="diametro_max">Diâmetro Máximo (em metros): </label>
+            <input type="number" id="diametro_max" required><br>
+    
+            <label for="velocidade_relativa">Velocidade Relativa (em km/h): </label>
+            <input type="number" id="velocidade_relativa" required><br>
+    
+            <label for="miss_distance">Distância de Aproximação (em km): </label>
+            <input type="number" id="miss_distance" required><br>
+    
+            <label for="magnitude_absoluta">Magnitude Absoluta: </label>
+            <input type="number" id="magnitude_absoluta" required><br>
+    
+            <button type="submit">Verificar</button>
         </form>
     
-        {% if resultado %}
-            <div class="result">
-                <h2>Resultado da Previsão: {{ resultado }}</h2>
-            </div>
-        {% endif %}
-    </section>
+        <h3 id="resultado"></h3>
+        <p id="probabilidade"></p>
+    
+        <script>
+            
+            document.getElementById('asteroid-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+    
+                const diametro_min = document.getElementById('diametro_min').value;
+                const diametro_max = document.getElementById('diametro_max').value;
+                const velocidade_relativa = document.getElementById('velocidade_relativa').value;
+                const miss_distance = document.getElementById('miss_distance').value;
+                const magnitude_absoluta = document.getElementById('magnitude_absoluta').value;
+    
+
+                const dados = {
+                    diametro_min,
+                    diametro_max,
+                    velocidade_relativa,
+                    miss_distance,
+                    magnitude_absoluta
+                };
+    
+                fetch('/verificar_asteroide/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(dados),
+                })
+                .then(response => response.json())
+                .then(data => {
+                   
+                    document.getElementById('resultado').textContent = `Resultado: ${data.resultado}`;
+                    document.getElementById('probabilidade').textContent = `Probabilidade de risco: ${data.probabilidade}%`;
+                })
+                .catch(error => {
+                    console.error('Erro:', error);
+                });
+            });
+        </script>
+    
 
     <footer class="footer">
         <div class="footer-content">
