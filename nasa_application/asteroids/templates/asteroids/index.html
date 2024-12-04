@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Asteroids: A Threat or a Wonder</title>
+    <title>Asteroids: NeoSentry</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'CSS/style.css' %}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -12,15 +12,15 @@
 <body>
     <header class="navbar">
         <div class="logo">
-            <img src="{% static 'img/logo.png' %}" alt="Asteroid Logo">
+            <img src="{% static 'img/logonasa..png' %}" alt="Asteroid Logo">
         </div>
         <nav>
             <ul>
                 <li><a href="#">Home</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="#">News</a></li>
-                <li><a href="#">Gallery</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="#tabscont">Project</a></li>
+                <li><a href="#nasaapi">Nasa API</a></li>
+                <li><a href="#asteroidAI">Asteroid AI</a></li>
             </ul>
         </nav>
     </header>
@@ -36,7 +36,6 @@
             <p>Are they a danger or a key to unlocking the mysteries of the cosmos?</p>
             <div class="buttons">
                 <a href="#about" class="btn">Learn More</a>
-                <a href="#" class="btn secondary">Watch Videos</a>
             </div>
         </div>
     </main>
@@ -44,16 +43,16 @@
     <section id="about" class="about-section">
         <div class="about-container">
             <div class="about-text">
-                <h3>SPACECRAFT</h3>
-                <h2>NASA's Orion</h2>
+                <h3>NEAR-EARTH OBJECTS</h3>
+                <h2>Potentially Hazardous Asteroids (PHAs)</h2>
                 <p>
-                    In the grand tapestry of human space exploration, NASA’s Orion Space Shuttle stands as a symbol of innovation, ambition, and our insatiable curiosity about the cosmos. 
-                    Designed to carry astronauts on deep-space missions to the Moon, Mars, and beyond, Orion represents a giant leap forward in our quest to explore the far reaches of the universe.
+                Potentially Hazardous Asteroids, or PHAs, are celestial bodies that orbit close to Earth and possess characteristics that could pose a significant threat to our planet. 
                 </p>
                 <p>
-                    The concept for the Orion spacecraft emerged in the early 2000s as part of NASA's Constellation program, which aimed to return humans to the Moon and eventually send them to Mars. 
-                    While the Constellation program faced budget constraints and technical challenges, Orion persevered and evolved into a crucial component of NASA's Artemis program, which seeks to land "the first woman and the next man" on the Moon by the mid-2020s.
+                Defined by their size, trajectory, and proximity, PHAs are monitored closely by astronomers and space agencies worldwide as part of global planetary defense initiatives.
                 </p>
+                <p> PHAs are classified based on two key criteria: their minimum orbit intersection distance (MOID) with Earth, which must be 0.05 astronomical units (AU) or less, 
+                    and their size, typically exceeding 140 meters in diameter. </p>
                 <a href="#" class="learn-more">Learn More</a>
             </div>
             <div class="about-image">
@@ -64,149 +63,169 @@
 
     <section id="newsletter" class="newsletter-banner">
         <div class="banner-content">
-            <h2>Embark on Cosmic Journeys via Email</h2>
-            <p>Stay in the Cosmic Loop — Subscribe to NASA's Newsletter</p>
-            <a href="#" class="btn-signup">Sign Up</a>
+            <h2>Unveiling the Mysteries of the Cosmos</h2>
+            <p>
+                Every star has a story, every planet holds a secret,  
+                and every journey begins with a single step into the unknown.  
+            </p>
+            <p>
+                Humanity’s quest to explore the universe has revealed wonders beyond imagination,  
+                from the fiery surfaces of distant stars to the icy depths of interstellar space.  
+            </p>
+            <a href="#" class="btn-signup">Discover More</a>
         </div>
     </section>
-
-
-    <div class="tabs-container">
+    
+    <div id="tabscont" class="tabs-container">
         <div class="tabs">
-            <button class="tab-link active" onclick="showSection('nasa-today')">NASA Today</button>
-            <button class="tab-link" onclick="showSection('looking-forward')">Looking Forward</button>
+            <button class="tab-link active" onclick="showSection('nasa-today')">NASA Database</button>
+            <button class="tab-link" onclick="showSection('looking-forward')">Artificial Intelligence</button>
             <button class="tab-link" onclick="showSection('history')">A History of Innovation</button>
         </div>
     
         <div class="tab-content">
             <section id="nasa-today" class="section active">
                 <div class="nasa-text">
-                    <h2>NASA Today</h2>
+                    <h2>NASA Database</h2>
                     <p>
-                        NASA explores the unknown in air and space, innovates for the benefit of humanity, and inspires the world through discovery.
-                        For more than 65 years, NASA has made the seemingly impossible, possible.
+                        The database used in this project is sourced directly from NASA’s extensive collection of near-Earth object (NEO) data,  
+                        containing over 90,000 records of asteroids and their characteristics. For our analysis, we utilized a curated subset of 17,000 entries,  
+                        carefully balanced to ensure an accurate and unbiased classification process.
                     </p>
                     <p>
-                        At its 20 centers and facilities across the country and with U.S. commercial companies and international partners,
-                        NASA leads studying Earth science, including climate, our Sun, solar system, and the larger universe.
+                        The dataset includes crucial attributes such as maximum and minimum diameter, relative velocity, miss distance, and absolute magnitude.  
+                        These features provide key insights into the potential hazards posed by asteroids and their trajectories near Earth.  
+                        Leveraging this rich and detailed data, we aim to enhance understanding and prediction of potentially hazardous asteroids (PHAs).  
                     </p>
                     <p>
-                        We conduct cutting-edge research to advance technology and aeronautics. We operate the world’s leading space laboratory,
-                        the International Space Station, and will establish a sustainable and strong exploration presence on the Moon this decade
-                        through the Artemis campaign.
+                        This comprehensive approach highlights the importance of NASA’s efforts in making data publicly available, empowering researchers  
+                        worldwide to contribute to planetary defense and space exploration initiatives.  
                     </p>
+                    
                 </div>
                 <div class="nasa-image">
                     <img src="{% static 'IMG/astronautspace.jpg' %}" alt="Technician working on NASA equipment">
-                    <p class="caption">
-                        Technicians inside the Payload Hazardous Servicing Facility at Kennedy Space Center install and test antennas on a solar array for the
-                        agency’s Europa Clipper spacecraft. NASA/Isaac Watson
-                    </p>
                 </div>
             </section>
     
             <section id="looking-forward" class="section">
                 <div class="nasa-text">
-                    <h2>Looking Forward</h2>
+                    <h2>Artificial Intelligence</h2>
                     <p>
-                        NASA leads studying Earth science, including climate, our Sun, solar system, and the larger universe.
-                        We conduct cutting-edge research to advance technology and aeronautics.
+                        As NASA explores the mysteries of the cosmos, advancements in artificial intelligence play a vital role in analyzing and interpreting vast amounts of data.  
+                        In this project, we utilized a Multilayer Perceptron (MLP), a type of artificial neural network, to assess and classify asteroid data.  
+                        This approach allows for high-precision predictions, aiding in the identification of potentially hazardous asteroids (PHAs).
                     </p>
                     <p>
-                        With missions to Mars, Europa, and beyond, NASA is unlocking the mysteries of the universe to benefit future generations.
+                        The MLP model processes multiple features, such as asteroid diameter, relative velocity, miss distance, and absolute magnitude,  
+                        to uncover patterns that might not be immediately visible through traditional methods. Its ability to learn complex relationships in the data  
+                        ensures a robust and reliable analysis, contributing to planetary defense initiatives and our understanding of near-Earth objects.
                     </p>
+                    <p>
+                        By integrating AI technologies like the MLP, we not only enhance our predictive capabilities but also pave the way for smarter and more efficient  
+                        methods to process the wealth of data generated by NASA's missions. The future of space exploration and planetary protection relies  
+                        on the seamless collaboration between human ingenuity and artificial intelligence.
+                    </p>
+                    
                 </div>
                 <div class="nasa-image">
                     <img src="{% static 'IMG/spaceshiporbits.jpg' %}" alt="Looking forward missions">
-                    <p class="caption">Future missions aim to explore beyond our current boundaries.</p>
                 </div>
             </section>
             <section id="history" class="section">
                 <div class="nasa-text">
                     <h2>A History of Innovation</h2>
                     <p>
-                        For more than 65 years, NASA has been a pioneer in space exploration, aeronautics, and technology.
+                        For decades, NASA has led the charge in understanding and mitigating the risks posed by near-Earth objects (NEOs),  
+                        including potentially hazardous asteroids (PHAs). With a commitment to planetary defense, NASA has developed sophisticated technologies  
+                        and strategies to monitor and study these celestial objects, ensuring Earth's safety while advancing our knowledge of the solar system.
                     </p>
                     <p>
-                        The Apollo missions, Space Shuttle program, and now the Artemis campaign have shaped the future of space exploration.
+                        Programs like the Planetary Defense Coordination Office (PDCO) and missions such as DART (Double Asteroid Redirection Test)  
+                        exemplify NASA's proactive approach to addressing asteroid impact risks. By leveraging state-of-the-art telescopes,  
+                        satellite observations, and global collaborations, NASA continually refines its ability to detect and track PHAs with remarkable accuracy.  
                     </p>
+                    <p>
+                        This dedication not only safeguards our planet but also highlights NASA’s ongoing legacy of innovation,  
+                        turning potential threats into opportunities for scientific discovery and technological advancement.  
+                    </p>
+                    
                 </div>
                 <div class="nasa-image">
-                    <img src="https://via.placeholder.com/600x400" alt="History of NASA">
-                    <p class="caption">NASA continues to innovate with each new mission. NASA/Archives</p>
+                    <img src="{% static 'IMG/astrounatasnasa.jpg' %}" alt="Looking forward missions">
+
                 </div>
             </section>
         </div>
     </div>
-    <section class="asteroid-section">
+    <section id="nasaapi" class="asteroid-section">
         <div class="content">
-            <h1 class="title">Asteroides Próximos à Terra</h1>
+            <h1 class="title">Near-Earth Asteroids</h1>
             <p class="description">
-                Descubra mais sobre os asteroides que estão se aproximando da Terra nos próximos dias. Explore dados sobre seus tamanhos, velocidades e distâncias.
+                Learn more about the asteroids that are approaching Earth in the coming days. Explore data on their sizes, speeds and distances.
             </p>
         </div>
         <div class="asteroid-cards" id="asteroid-cards-container">
-            <!-- Os cards dos asteroides serão preenchidos aqui com JavaScript -->
+           
         </div>
     </section>
     
     <script>
-        // Função para carregar os asteroides e preencher os cards
+        
         function loadAsteroids() {
-            fetch('http://127.0.0.1:8000/api/asteroids/search/') // URL da API
+            fetch('http://127.0.0.1:8000/api/asteroids/search/') 
                 .then(response => response.json())
                 .then(data => {
                     const asteroidContainer = document.getElementById('asteroid-cards-container');
-                    asteroidContainer.innerHTML = '';  // Limpa os cards antes de adicionar novos
+                    asteroidContainer.innerHTML = '';  
     
-                    // Checa se há asteroides na resposta
+                    
                     if (data.asteroids && data.asteroids.length > 0) {
-                        // Limita a exibição a 5 asteroides
+                        
                         const limitedAsteroids = data.asteroids.slice(0, 5);
     
                         limitedAsteroids.forEach(asteroid => {
-                            // Cria um novo card para cada asteroide
                             const card = document.createElement('div');
                             card.classList.add('asteroid-card');
     
                             card.innerHTML = `
                                 <h2 class="asteroid-name">${asteroid.name}</h2>
                                 <div class="asteroid-details">
-                                    <p><strong>Diâmetro: </strong>${asteroid.min_diameter} - ${asteroid.max_diameter} km</p>
-                                    <p><strong>Velocidade: </strong>${asteroid.relative_velocity} km/s</p>
-                                    <p><strong>Distância: </strong>${asteroid.miss_distance} AU</p>
-                                    <p><strong>Magnitude Absoluta: </strong>${asteroid.absolute_magnitude}</p>
+                                    <p><strong>Diameter: </strong>${asteroid.min_diameter} - ${asteroid.max_diameter} km</p>
+                                    <p><strong>Speed: </strong>${asteroid.relative_velocity} km/s</p>
+                                    <p><strong>Distance: </strong>${asteroid.miss_distance} AU</p>
+                                    <p><strong>Absolute Magnitude: </strong>${asteroid.absolute_magnitude}</p>
                                 </div>
                             `;
     
-                            // Adiciona o card ao contêiner
                             asteroidContainer.appendChild(card);
                         });
                     } else {
-                        // Caso não haja asteroides, exibe uma mensagem
                         asteroidContainer.innerHTML = '<p>Nenhum asteroide encontrado.</p>';
                     }
                 })
                 .catch(error => {
                     console.error('Erro ao carregar asteroides:', error);
-                    // Exibe uma mensagem de erro caso ocorra algum problema na requisição
                     document.getElementById('asteroid-cards-container').innerHTML = '<p>Erro ao carregar os asteroides.</p>';
                 });
         }
     
-        // Chama a função de carregamento quando a página for carregada
+       
         window.onload = loadAsteroids;
     </script>
     <section class="apophis-section">
         <div class="text">
-            <h2>Asteroide Apophis: Perigoso para a Terra ?</h2>
-        <p>O asteroide Apophis, descoberto em 2004, tem atraído a atenção dos cientistas e entusiastas do espaço devido ao seu tamanho e trajetória única. Com um diâmetro estimado em aproximadamente 370 metros, Apophis é um dos maiores asteroides que passa próximo à Terra.</p>
+            <h2>Asteroid Apophis: Dangerous for Earth?</h2>
+        <p>The asteroid Apophis, discovered in 2004, has captured the attention of scientists and space enthusiasts due to its size and unique trajectory.</p>
         
-        <p>Durante sua passagem mais próxima, prevista para 2029, o Apophis estará a apenas 31.000 quilômetros da Terra, uma distância considerada muito próxima quando comparada à órbita de satélites geossíncronos. Este evento gerou uma preocupação significativa, embora as chances de impacto sejam extremamente pequenas.</p>
+        <p>With an estimated diameter of approximately 370 meters, Apophis is one of the largest asteroids to pass close to Earth. Apophis has been closely monitored by various space agencies, including NASA, which uses advanced telescopes and radar technologies  
+            to study its orbit and behavior. NASA is also exploring ways to deflect asteroids on a collision course with Earth,  
+            a scenario that, while unlikely, could have serious consequences for life on our planet. </p>
 
-        <p>O Apophis tem sido monitorado de perto por várias agências espaciais, incluindo a NASA, que utiliza telescópios avançados e tecnologias de radar para estudar sua órbita e comportamento. A NASA também está explorando maneiras de desviar asteroides em rota de colisão com a Terra, um cenário que, embora improvável, poderia ter sérias consequências para a vida no nosso planeta.</p>
+        <p>During its closest approach, scheduled for 2029, Apophis will be just 31,000 kilometers from Earth a distance considered extremely close compared to the orbit of geosynchronous satellites.</p>
 
-        <p>A cada passagem, a precisão do cálculo da sua trajetória melhora, e os cientistas acreditam que os riscos de impacto estão diminuindo. No entanto, o estudo de Apophis continua sendo uma prioridade para a pesquisa espacial, fornecendo informações cruciais sobre a dinâmica dos asteroides e as ameaças potenciais que eles representam.</p>
+        <p>This event has generated significant concern, though the chances of an impact remain extremely low. However, the study of Apophis remains a priority for space research, providing critical insights into asteroid dynamics  
+            and the potential threats they pose. </p>
         </div>
     
         <div class="asteroid-image">
@@ -215,25 +234,25 @@
     </section>
     
     <section class="mission-section">
-        <h2>Missões de Monitoramento de Asteroides</h2>
-        <p>Descubra como diversas missões espaciais estão monitorando asteroides próximos à Terra e explorando os métodos de defesa contra impactos.</p>
+        <h2>Asteroid Monitoring Missions</h2>
+        <p>Discover how several space missions are monitoring near-Earth asteroids and exploring methods of defending against impacts.</p>
     
         <div class="mission-cards">
             <div class="mission-card">
                 <h3>NEOWISE</h3>
-                <p>O NEOWISE é um satélite da NASA focado na detecção de asteroides próximos à Terra e cometas. A missão foi relançada em 2013 e é vital para monitorar objetos perigosos.</p>
+                <p>NEOWISE is a NASA satellite focused on detecting near-Earth asteroids and comets. The mission was relaunched in 2013 and is vital for monitoring dangerous objects.</p>
             </div>
             <div class="mission-card">
                 <h3>OSIRIS-REx</h3>
-                <p>A missão OSIRIS-REx coleta amostras do asteroide Bennu para estudo. Lançada em 2016, ela também fornece dados cruciais para entender os riscos de impacto.</p>
+                <p>The OSIRIS-REx mission collects samples from the asteroid Bennu for study. Launched in 2016, it also provides crucial data for understanding impact risks.</p>
             </div>
             <div class="mission-card">
                 <h3>AIDA (DART)</h3>
-                <p>A missão AIDA, incluindo a missão DART, visa testar métodos de desvio de asteroides para proteger a Terra de possíveis colisões.</p>
+                <p>The AIDA mission, including the DART mission, aims to test asteroid deflection methods to protect Earth from possible collisions.</p>
             </div>
             <div class="mission-card">
                 <h3>Hayabusa2</h3>
-                <p>A missão Hayabusa2, da Agência Espacial Japonesa (JAXA), foi lançada para coletar amostras do asteroide Ryugu.</p>
+                <p>The Japan Aerospace Exploration Agency (JAXA) Hayabusa2 mission was launched to collect samples from the asteroid Ryugu.</p>
             </div>
             
         </div>
@@ -247,29 +266,29 @@
         </div>
     </section>
     
-    <section class="asteroid-section">
+    <section id="asteroidAI" class="asteroid-section">
         <div class="content">
-            <h1 class="titlee">Verifique se o Asteroide é Perigoso</h1>
-            <p class="descriptionn">Insira as informações do asteroide para saber se ele representa um risco para a Terra.</p>
+            <h1 class="titlee">Check if the Asteroid is Dangerous</h1>
+            <p class="descriptionn">Enter the asteroid's information to find out if it poses a risk to Earth.</p>
         </div>
     
         <form id="asteroid-form">
-            <label for="diametro_min">Diâmetro Mínimo (em metros): </label>
+            <label for="diametro_min">Minimum Diameter (in meters): </label>
             <input type="number" name="diametro_min" id="diametro_min" step="0.000001" required><br>
         
-            <label for="diametro_max">Diâmetro Máximo (em metros): </label>
+            <label for="diametro_max">Maximum Diameter (in meters): </label>
             <input type="number" name="diametro_max" id="diametro_max" step="0.000001" required><br>
         
-            <label for="velocidade_relativa">Velocidade Relativa (em km/h): </label>
+            <label for="velocidade_relativa">Relative Speed (in km/s): </label>
             <input type="number" name="velocidade_relativa" id="velocidade_relativa" step="0.000001" required><br>
         
-            <label for="miss_distance">Distância de Aproximação (em km): </label>
+            <label for="miss_distance">Approach Distance (in km/s): </label>
             <input type="number" name="miss_distance" id="miss_distance" step="0.000001" required><br>
         
-            <label for="magnitude_absoluta">Magnitude Absoluta: </label>
+            <label for="magnitude_absoluta">Absolute Magnitude:</label>
             <input type="number" name="magnitude_absoluta" id="magnitude_absoluta" step="0.000001" required><br>
         
-            <button type="submit">Enviar</button>
+            <button type="submit">To send</button>
         </form>
         
     
@@ -306,8 +325,8 @@
                 .then(response => response.json())
                 .then(data => {
                    
-                    document.getElementById('resultado').textContent = `Resultado: ${data.resultado}`;
-                    document.getElementById('probabilidade').textContent = `Probabilidade de risco: ${data.probabilidade}%`;
+                    document.getElementById('resultado').textContent = `Result: ${data.resultado}`;
+                    document.getElementById('probabilidade').textContent = `Risk Probability: ${data.probabilidade}%`;
                 })
                 .catch(error => {
                     console.error('Erro:', error);
@@ -318,11 +337,13 @@
 
     <footer class="footer">
         <div class="footer-content">
-            <p>&copy; 2024 Asteroid Watch. Todos os direitos reservados.</p>
+            <p>&copy; 2024 Asteroid NeoSentry. All rights reserved.</p>
             <div class="footer-links">
-                <a href="#">Termos de Serviço</a>
-                <a href="#">Política de Privacidade</a>
-                <a href="#">Contato</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Contact</a>
+            </div>
+            
             </div>
             <div class="social-links">
                 <a href="https://facebook.com" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
