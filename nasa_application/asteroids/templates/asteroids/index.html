@@ -145,20 +145,58 @@
                 Descubra mais sobre os asteroides que estão se aproximando da Terra nos próximos dias. Explore dados sobre seus tamanhos, velocidades e distâncias.
             </p>
         </div>
-        <div class="asteroid-cards">
-            {% for asteroid in asteroids %}
-            <div class="asteroid-card">
-                <h2 class="asteroid-name">{{ asteroid.name }}</h2>
-                <div class="asteroid-details">
-                    <p><strong>Diâmetro: </strong>{{ asteroid.min_diameter }} - {{ asteroid.max_diameter }} km</p>
-                    <p><strong>Velocidade: </strong>{{ asteroid.relative_velocity }} km/s</p>
-                    <p><strong>Distância: </strong>{{ asteroid.miss_distance }} AU</p>
-                </div>
-            </div>
-            {% endfor %}
+        <div class="asteroid-cards" id="asteroid-cards-container">
+            <!-- Os cards dos asteroides serão preenchidos aqui com JavaScript -->
         </div>
     </section>
-
+    
+    <script>
+        // Função para carregar os asteroides e preencher os cards
+        function loadAsteroids() {
+            fetch('http://127.0.0.1:8000/api/asteroids/search/') // URL da API
+                .then(response => response.json())
+                .then(data => {
+                    const asteroidContainer = document.getElementById('asteroid-cards-container');
+                    asteroidContainer.innerHTML = '';  // Limpa os cards antes de adicionar novos
+    
+                    // Checa se há asteroides na resposta
+                    if (data.asteroids && data.asteroids.length > 0) {
+                        // Limita a exibição a 5 asteroides
+                        const limitedAsteroids = data.asteroids.slice(0, 5);
+    
+                        limitedAsteroids.forEach(asteroid => {
+                            // Cria um novo card para cada asteroide
+                            const card = document.createElement('div');
+                            card.classList.add('asteroid-card');
+    
+                            card.innerHTML = `
+                                <h2 class="asteroid-name">${asteroid.name}</h2>
+                                <div class="asteroid-details">
+                                    <p><strong>Diâmetro: </strong>${asteroid.min_diameter} - ${asteroid.max_diameter} km</p>
+                                    <p><strong>Velocidade: </strong>${asteroid.relative_velocity} km/s</p>
+                                    <p><strong>Distância: </strong>${asteroid.miss_distance} AU</p>
+                                    <p><strong>Magnitude Absoluta: </strong>${asteroid.absolute_magnitude}</p>
+                                </div>
+                            `;
+    
+                            // Adiciona o card ao contêiner
+                            asteroidContainer.appendChild(card);
+                        });
+                    } else {
+                        // Caso não haja asteroides, exibe uma mensagem
+                        asteroidContainer.innerHTML = '<p>Nenhum asteroide encontrado.</p>';
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro ao carregar asteroides:', error);
+                    // Exibe uma mensagem de erro caso ocorra algum problema na requisição
+                    document.getElementById('asteroid-cards-container').innerHTML = '<p>Erro ao carregar os asteroides.</p>';
+                });
+        }
+    
+        // Chama a função de carregamento quando a página for carregada
+        window.onload = loadAsteroids;
+    </script>
     <section class="apophis-section">
         <div class="text">
             <h2>Asteroide Apophis: Perigoso para a Terra ?</h2>
