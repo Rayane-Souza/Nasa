@@ -1,13 +1,10 @@
-version: "3.9"
+version: "3.8"
 
 services:
   web:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    build: .
+    command: gunicorn nasa_application.settings:application -b 0.0.0.0:8000
     ports:
       - "8000:8000"
     environment:
-      DJANGO_SETTINGS_MODULE: myproject.settings
-    volumes:
-      - .:/app
+      - DEBUG=True
