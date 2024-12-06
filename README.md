@@ -3,7 +3,7 @@
 Projeto para a detecção de Objetos Próximos à Terra (NEOs)
 
 ## Detecção de NEO's
-O NeoSentry é um projeto desenvolvido para os disciplinas de Inteligência Artifical e Ciência de Dados Desenvolvimento Back-End e Inglês para Computação como avaliação da II unidade do 4° período. Este projeto utiliza um conjunto de dados da base da Nasa e implementando um modelo de IA treinado, para através de uma aplicação web Django disponibilizar previsões de probabilidade de algum corpo entrar na atmosfera terrestre.
+O NeoSentry é um projeto desenvolvido para as disciplinas de Inteligência Artifical e Ciência de Dados Desenvolvimento Back-End e Inglês para Computação como avaliação da II unidade do 4° período. Este projeto utiliza um conjunto de dados da base da Nasa e implementando um modelo de IA treinado, para através de uma aplicação web Django disponibilizar previsões de probabilidade de algum corpo entrar na atmosfera terrestre.
 
 ## Contexto
 Os Objetos Próximos à Terra (NEOs) potencialmente perigosos representam uma ameaça significativa para o planeta, com riscos para a vida humana e a integridade da Terra. A NASA monitora esses corpos, coletando dados como diâmetro, velocidade e magnitude para determinar se oferecem perigo. Com os avanços da Inteligência Artificial, é possível detectar e analisar de forma mais eficaz os NEOs que representam riscos para a Terra, utilizando modelos preditivos que processam esses dados.
