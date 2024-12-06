@@ -24,6 +24,25 @@ O conjunto de dados utilizado para a construção do projeto foi o "Neo Earth Cl
 
 ## 🌐 Sistema
 
+![image](https://github.com/user-attachments/assets/ad9e81e6-e288-4715-aec8-e582a8df3326)
+
+![image](https://github.com/user-attachments/assets/2637d35f-dc21-4150-9d1c-40a5d2b6102f)
+
+![image](https://github.com/user-attachments/assets/9c1e99a8-608f-4071-860d-38549e514ec3)
+
+![image](https://github.com/user-attachments/assets/c328800c-05ef-483f-b986-e3dc6d9e316d)
+
+![image](https://github.com/user-attachments/assets/64c132ed-46b0-4a59-a6ad-4e94bb3c6043)
+
+![image](https://github.com/user-attachments/assets/f052c255-4075-4edc-b641-093a7ea7089a)
+
+
+
+
+
+
+
+
 ##  👥 Equipe do Projeto
 
 | <a href="https://github.com/BiaSilvaa"><img src="https://github.com/BiaSilvaa.png?size=100&v=4" width="100" /></a> | <a href="https://github.com/Beatriz-Rodriguesx"><img src="https://github.com/Beatriz-Rodriguesx.png?size=100&v=4" width="100" /></a> | <a href="https://github.com/Luizh92"><img src="https://github.com/Luizh92.png?size=100&v=4" width="100" /></a> | <a href="https://github.com/Rayane-Souza"><img src="https://github.com/Rayane-Souza.png?size=100&v=4" width="100" /></a> | <a href="https://github.com/Rogerio-07"><img src="https://github.com/Rogerio-07.png?size=100&v=4" width="100" /></a> |
