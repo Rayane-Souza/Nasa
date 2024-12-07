@@ -6,6 +6,5 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - DEBUG=False  
-      - DJANGO_SETTINGS_MODULE=nasa_application.settings  
+      - DEBUG=False
     command: gunicorn nasa_application.wsgi:application --bind 0.0.0.0:8000
