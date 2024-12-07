@@ -1,4 +1,4 @@
-version: "3.8"
+version: "3.9"  
 
 services:
   web:
@@ -7,19 +7,13 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - DEBUG=False
-      - ALLOWED_HOSTS=0.0.0.0,localhost
+      - DEBUG=True
+    volumes:
+      - .:/app
     depends_on:
       - db
 
   db:
-    image: postgres:15
-    environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: dbname
+    image: nouchka/sqlite3:latest
     volumes:
-      - postgres_data:/var/lib/postgresql/data
-
-volumes:
-  postgres_data:
+      - ./nasa_application/db.sqlite3:/app/db.sqlite3
