@@ -5,7 +5,7 @@ services:
     build_command: |
       pip install -r requirements.txt &&
       python manage.py migrate
-    start_command: python manage.py runserver 0.0.0.0:$PORT
+    start_command: daphne nasa_application.asgi:application --bind 0.0.0.0:$PORT
     env: production
     secrets:
       - name: SECRET_KEY
