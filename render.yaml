@@ -1,5 +1,8 @@
 services:
   - name: nasa-application
     type: web
-    buildCommand: pip install -r requirements.txt && python manage.py migrate
-    startCommand: gunicorn nasa_application.nasa_application.wsgi:application
+    buildCommand: |
+      pip install -r requirements.txt
+    startCommand: |
+      cd nasa_application/nasa_application
+      gunicorn wsgi:application

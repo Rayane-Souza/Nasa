@@ -1,1 +1,1 @@
-web: gunicorn nasa_application.nasa_application.wsgi:application
+web: sh -c "cd nasa_application/nasa_application && gunicorn wsgi:application"
